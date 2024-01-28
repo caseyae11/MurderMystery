@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>MURDER MYSTERY</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type=module>
+
+import zim from "https://zimjs.org/cdn/015/zim_game";
+
+const assets = [
+    "1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "d1.png",
+    "d2.png",
+    "d3.png",
+    "d4.png",
+    "d5.png", 
+    "h1.png", 
+    "h2.png", 
+    "p1.png", 
+    "p2.png", 
+    "p3.png", 
+    "p4.png", 
+    "p5.png",
+    "audio.mp3",
+    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap',
+    "https://fonts.googleapis.com/css2?family=Tomorrow&display=swap"
+
+];
+const path = "assets/";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, darker, darker, ready, assets, path);
+function ready() {
+
+
+  
+  let container = new Container(W, H).sca(0.7, 0.8).centerReg();
+  let intro = new Pic("2.png").centerReg(container).sca(1.2, 1)
+  let introframe = new Rectangle(925, 770, null, lighter, 1, 20).centerReg(container)
+  container.setMask(introframe)
+
+  const song = new Aud({
+          file: "audio.mp3",
+          delay: 0.25,
+          loop: true,
+        });
+
+  const labels = new Label({
+    text: "Next Room",
+    size: 20,
+    color: "#81561C",
+    font: "tomorrow",
+    }).centerReg().center();
+    
+    const button1 = new Button({
+    label: labels,
+    style: "tomorrow",
+    color: "#81561C",
+    height: 40,
+    width: 120,
+    backgroundColor: brown,
+    rollBackgroundColor: "#81561C",
+    corner: 10,
+    borderColor: white,
+    borderWidth: 2,
+    }).pos(0, 90, RIGHT, BOTTOM);
+
+    button1.on("click", () => {
+        zgo("lvl3.html")
+    });
+
+  const circle = new Circle(2.5, lighter).addTo(container).loc(800, 550).alp(0.8);
+  circle.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+  circle.tap(()=>{
+
+    const words = [
+      "It seems casey enjoyed to scribble art in his free time.",
+      "Just a bunch of his artwork on his table.",
+      "Its seems like he was a good artist but he didn't think so." 
+    ];
+
+    STYLE = { lineHeight: 40 };
+    const dialog = new Dialog({
+      width: 350,
+      words: words,
+      dialogType: "rectangle",
+      tailType: "none",
+      fill: false,
+      size: 20,
+      font: "Tomorrow",
+      color: white,
+      backgroundColor: darker,
+      borderColor: white,
+      borderWidth: 1,
+      corner: 50,
+      padding: 50,
+    }).center(container).centerReg()
+    
+    intro.tap(()=>{
+      dialog.removeFrom(container)
+    })
+  });
+
+  const circle2 = new Circle(2.5, lighter).addTo(container).loc(170, 530).alp(0.8);
+  circle2.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+
+  circle2.tap(()=>{
+
+  const words = [
+    "More drawing books and notes he uses for programing.",
+    "He took a lot of notes down when he programmed.",
+    "Seems like he worked a lot on his projects.",
+    "Also scribbled some names",
+    "Zora, Daniel, Kaitlyn & Briana, Molly",
+  ];
+
+  STYLE = { lineHeight: 40 };
+
+  const dialog = new Dialog({
+    width: 350,
+    words: words,
+    dialogType: "rectangle",
+    tailType: "none",
+    fill: false,
+    size: 20,
+    font: "Tomorrow",
+    color: white,
+    backgroundColor: darker,
+    borderColor: white,
+    borderWidth: 1,
+    corner: 50,
+    padding: 50,
+  }).center(container).centerReg()
+
+  intro.tap(()=>{
+    dialog.removeFrom(container)
+  })
+  });
+
+  const circle3 = new Circle(2.5, lighter).addTo(container).loc(240, 570).alp(0.8);
+  circle3.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+
+  circle3.tap(()=>{
+
+  const words = [
+    "Light drawer",
+    "some finger prints",
+    "and some hot sauce stains?",
+    "Seems like someone went through it",
+    "Maybe after the murder?",
+    "What could be missing?"
+  ];
+
+  STYLE = { lineHeight: 40 };
+
+  const dialog = new Dialog({
+    width: 350,
+    words: words,
+    dialogType: "rectangle",
+    tailType: "none",
+    fill: false,
+    size: 20,
+    font: "Tomorrow",
+    color: white,
+    backgroundColor: darker,
+    borderColor: white,
+    borderWidth: 1,
+    corner: 50,
+    padding: 50,
+  }).center(container).centerReg()
+
+  intro.tap(()=>{
+    dialog.removeFrom(container)
+  })
+  });
+
+  const circle4 = new Circle(2.5, lighter).addTo(container).loc(500, 700).alp(0.8);
+  circle4.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+
+  circle4.tap(()=>{
+
+  const words = [
+    "Hmm a stain on the rug",
+    "Can't figure the footprint",
+    "Tastes like mud",
+    "Maybe before the murder?",
+  ];
+
+  STYLE = { lineHeight: 40 };
+
+  const dialog = new Dialog({
+    width: 350,
+    words: words,
+    dialogType: "rectangle",
+    tailType: "none",
+    fill: false,
+    size: 20,
+    font: "Tomorrow",
+    color: white,
+    backgroundColor: darker,
+    borderColor: white,
+    borderWidth: 1,
+    corner: 50,
+    padding: 50,
+  }).center(container).centerReg()
+
+  intro.tap(()=>{
+    dialog.removeFrom(container)
+  })
+  });
+
+
+  const circle5 = new Circle(2.5, lighter).addTo(container).loc(450, 450).alp(0.8);
+  circle5.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+
+  circle5.tap(()=>{
+
+  const words = [
+    "No blood on the bed",
+    "Sheets are ruffled however",
+    "Right pillow is out of place",
+    "Suffocation? Poison?",
+    "Still no finger prints.",
+  ];
+
+  STYLE = { lineHeight: 40 };
+
+  const dialog = new Dialog({
+    width: 350,
+    words: words,
+    dialogType: "rectangle",
+    tailType: "none",
+    fill: false,
+    size: 20,
+    font: "Tomorrow",
+    color: white,
+    backgroundColor: darker,
+    borderColor: white,
+    borderWidth: 1,
+    corner: 50,
+    padding: 50,
+  }).center(container).centerReg()
+
+  intro.tap(()=>{
+    dialog.removeFrom(container)
+  })
+  });
+
+
+  const circle6 = new Circle(2.5, lighter).addTo(container).loc(700, 240).alp(0.8);
+  circle6.animate({
+    props:{scale: 2},
+    time: 1,
+    loop: true,
+    rewind: true
+  });
+
+  circle6.tap(()=>{
+
+  const words = [
+    "His journal. He called it Grxm",
+    "He took notes of all his struggles and things that brought him happiness.",
+    "He loved music. Helped him get through everyday",
+    "He was very close with his family",
+    "Loved to take jogs and play soccer",
+    "Dislikes barbeque sauce and yoghurt",
+    "Was a nightworm. Could barely sleep usually working late nights",
+    "Watched movies and played games with his roomates some nights",
+    "Nothing about any enemies in here.",
+    "So who could it be?"
+  ];
+
+  STYLE = { lineHeight: 40 };
+
+  const dialog = new Dialog({
+    width: 350,
+    words: words,
+    dialogType: "rectangle",
+    tailType: "none",
+    fill: false,
+    size: 20,
+    font: "Tomorrow",
+    color: white,
+    backgroundColor: darker,
+    borderColor: white,
+    borderWidth: 1,
+    corner: 50,
+    padding: 50,
+  }).center(container).centerReg()
+
+  intro.tap(()=>{
+    dialog.removeFrom(container)
+  })
+  });
+
+      
+      
+
+
+
+
+    
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>MURDER MYSTERY</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type=module>
+
+import zim from "https://zimjs.org/cdn/015/zim_game";
+
+const assets = [
+    "1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "d1.png",
+    "d2.png",
+    "d3.png",
+    "d4.png",
+    "d5.png", 
+    "h1.png", 
+    "h2.png", 
+    "p1.png", 
+    "p2.png", 
+    "p3.png", 
+    "p4.png", 
+    "p5.png",
+    "audio.mp3",
+    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap',
+    "https://fonts.googleapis.com/css2?family=Tomorrow&display=swap"
+
+];
+const path = "assets/";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, darker, darker, ready, assets, path);
+function ready() {
+
+    
+  
+  let container = new Container(W, H).sca(0.7, 0.8).centerReg();
+  let intro = new Pic("8.png").centerReg(container).sca(1.2, 1)
+  let introframe = new Rectangle(925, 770, null, lighter, 1, 20).centerReg(container)
+  container.setMask(introframe)
+
+  const song = new Aud({
+          file: "audio.mp3",
+          delay: 0.25,
+          loop: true,
+        });
+
+  const introtext = new Label({
+            text: "Who is the Murderer?",
+            size: 50,
+            color: lighter,
+            font: "tomorrow",
+          }).pos(0, 200, CENTER, TOP)
+
+  let detective = new Pic("d3.png").loc(0, 330).sca(0.2)
+  let detective2 = new Pic("d5.png").loc(800, 330).sca(0.2)
+
+  let p1 = new Pic("p1.png").loc(200, 330).sca(0.5)
+    let p6lab = new Label({
+            text: "Briana",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).loc(200, 560)
+
+  let p2 = new Pic("p2.png").loc(340, 330).sca(0.5)
+  let p5lab = new Label({
+            text: "Molly",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).loc(350, 560)
+
+  let p3 = new Pic("p3.png").loc(470, 330).sca(0.5)
+  let p4lab = new Label({
+            text: "Zora",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).loc(480, 560)
+    
+  let p4 = new Pic("p4.png").loc(600, 330).sca(0.5)
+  let p3lab = new Label({
+            text: "Kaitlyn",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).loc(600, 560)
+
+  let p5 = new Pic("p5.png").loc(740, 330).sca(0.78)
+  let p2lab = new Label({
+            text: "Daniel",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).loc(750, 560)
+    
+
+
+    const labels = new Label({
+    text: "START",
+    size: 20,
+    color: "#81561C",
+    font: "tomorrow",
+    }).centerReg().center();
+    
+    const level3 = new Button({
+    label: labels,
+    style: "tomorrow",
+    color: "#81561C",
+    height: 40,
+    width: 100,
+    backgroundColor: brown,
+    rollBackgroundColor: "#81561C",
+    corner: 10,
+    borderColor: white,
+    borderWidth: 2,
+    }).pos(0, 90, CENTER, BOTTOM);
+
+    level3.on("click", () => {
+        zgo("lvl2.html")
+    });
+  
+
+
+    
+    
+
+
+
+
+    
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

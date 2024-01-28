@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>MURDER MYSTERY</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type=module>
+
+import zim from "https://zimjs.org/cdn/015/zim";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, light, dark, ready);
+function ready() {
+    
+let redBlock = new Rectangle(100, 100, "red");
+let greenBlock = new Rectangle(100, 100, "green");
+let blueBlock = new Rectangle(100, 100, "blue");
+
+// Position the blocks on the stage
+redBlock.pos(100, 200);
+greenBlock.pos(300, 200);
+blueBlock.pos(500, 200);
+
+// Function to handle when a color block is clicked
+function blockClicked(color) {
+    console.log("Selected color: " + color);
+    // Add your logic here to proceed with the game based on the selected color
+}
+
+// Listen for click events on the color blocks
+redBlock.on("click", () => blockClicked("red"));
+greenBlock.on("click", () => blockClicked("green"));
+blueBlock.on("click", () => blockClicked("blue"));
+
+// const tile = new Tile(new Rectangle(100,100,series(orange, green, blue, pink)), 4, 1, 10);
+
+// // add the tile to the Scrambler - by default it scrambles
+// const scrambler = new Scrambler(tile).center();
+
+// // when the tile is unscrambled it calls the complete function
+// scrambler.on("complete", ()=>{
+//    zogg("Yay!");
+// });
+
+
+// const desiredOrder = ["orange", "green", "blue", "pink"];
+
+// const tile = new zim.Tile(new zim.Rectangle(100, 100, zim.series(desiredOrder)), 4, 1, 10);
+// const scrambler = new zim.Scrambler(tile, desiredOrder).center();
+
+// scrambler.on("complete", () => {
+//     zog("Colors are in the right order!");
+// });
+
+const tile = new Tile(new Rectangle(100,100,series(orange, green, blue, pink)), 4, 1, 10);
+
+// add the tile to the Scrambler - by default it scrambles
+const scrambler = new Scrambler(tile).center();
+
+// when the tile is unscrambled it calls the complete function
+scrambler.on("complete", ()=>{
+   zogg("Yay!");
+});
+//  // adds a default input field to the stage
+
+// new Button({label:"SUBMIT"}).loc(100, 200).tap(()=>{
+//    zog(input.text); // whatever is typed into the LabelInput
+// });
+
+const correctPassword = "mystery123"; // Set your desired password
+
+// Create a TextInput field
+const input = new TextInput(
+    {
+           
+            font: "tomorrow",
+
+
+        }
+).loc(100,100);
+// Create a Button to check the password
+const submitButton = new Button({label: "SUBMIT"}).loc(100, 200).tap(() => {
+    checkPassword(input.text); // Call the function to check the entered password
+});
+
+
+// Function to check the entered password
+function checkPassword(enteredPassword) {
+    if (enteredPassword === correctPassword) {
+        grantAccessToComputer();
+    } else {
+        alert("Incorrect password. Access denied.");
+    }
+}
+
+// Function to grant access to the computer
+function grantAccessToComputer() {
+    alert("Access granted! You can now investigate the computer.");
+    // Your logic for accessing the computer goes here
+}
+        
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

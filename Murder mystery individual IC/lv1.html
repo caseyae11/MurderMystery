@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>MURDER MYSTERY</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type=module>
+
+import zim from "https://zimjs.org/cdn/015/zim_game";
+
+const assets = [
+    "1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "d1.png",
+    "d2.png",
+    "d3.png",
+    "d4.png",
+    "d5.png", 
+    "h1.png", 
+    "h2.png", 
+    "p1.png", 
+    "p2.png", 
+    "p3.png", 
+    "p4.png", 
+    "p5.png",
+    "audio.mp3",
+    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap',
+    "https://fonts.googleapis.com/css2?family=Tomorrow&display=swap"
+
+];
+const path = "assets/";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, darker, darker, ready, assets, path);
+function ready() {
+
+
+    
+    let container = new Container(W, H).sca(1, 0.8).centerReg();
+    let intro = new Pic("3.png").centerReg(container).sca(0.3)
+    let introframe = new Rectangle(920, 920, null, lighter, 1, 20).centerReg(container)
+    container.setMask(introframe)
+
+
+    let detective = new Pic("d1.png").loc(0, 330).sca(0.2)
+    const introlabel = new Label({
+            text: "MURDER",
+            size: 85,
+            color: light,
+            font: "tomorrow",
+          }).pos(0, 150, CENTER, TOP)
+
+    const introlabel2 = new Label({
+        text: "MYSTERY",
+        size: 100,
+        color: "#81561C",
+        font: "tomorrow",
+        }).pos(0, 250, CENTER, TOP)
+
+    // const introlabel3 = new Label({
+    //     text: "everything here is fictional or is it??",
+    //     size: 20,
+    //     color: lighter,
+    //     font: "tomorrow",
+    //     }).pos(0, 400, CENTER, TOP)
+
+    const labels = new Label({
+    text: "START",
+    size: 30,
+    color: "#81561C",
+    font: "tomorrow",
+    }).centerReg().center();
+    
+    const level3 = new Button({
+    label: labels,
+    style: "tomorrow",
+    color: "#81561C",
+    width: 150,
+    backgroundColor: brown,
+    rollBackgroundColor: "#81561C",
+    corner: 25,
+    borderColor: white,
+    borderWidth: 2,
+    }).pos(0, 80, CENTER, BOTTOM);
+
+    level3.on("click", () => {
+        introlabel.removeFrom()
+        introlabel2.removeFrom()
+        level3.removeFrom()
+        intro.animate({
+                props: { scale: 0.5 },
+                time: 1.5,
+                call: part1
+              }).centerReg(container)
+ 
+    });
+
+
+    let start;
+    let dialog;
+
+    function part1(){
+      const song = new Aud({
+          file: "audio.mp3",
+          delay: 0.25,
+          loop: true,
+        });
+       // const rect = new Rectangle(500, 500, "#81561C", lighter, 1, 20).center()
+       const words = [
+            "Casey was recently murdered in his house",
+            "He recently flew his friends and sisters into the state to come spend time with him",
+            "They are all supposed to be his friends but the shocking news of his death has left everyone perplexed",
+            "Now it is up to you detective to Uncover this crime and help avenge Caseys death.",
+            "The house has been secured since his death so they are a lot of clues scattered around the house that will help you.",
+            "Look through the clues and Solve the riddles and puzzles along the way",
+            "end",
+
+          ];
+
+          STYLE = { lineHeight: 40 };
+          
+          dialog = new Dialog({
+            width: 400,
+            words: words,
+            dialogType: "rectangle",
+            tailType: "none",
+            fill: false,
+            size: 20,
+            font: "Tomorrow",
+            color: white,
+            backgroundColor: darker,
+            borderColor: white,
+            borderWidth: 1,
+            corner: 50,
+            padding: 60,
+            
+          }).center(container).centerReg()
+
+          dialog.on("change", () => {
+            zogb(dialog.selectedIndex);
+            if (dialog.selectedIndex == 6) {
+              start.centerReg().center();
+              dialog.removeFrom();
+              S.update();
+            }
+          });
+
+
+          const label = new Label({
+            text: "See the suspects",
+            size: 22,
+            color: darker,
+            font: "Tomorrow",
+          }).centerReg().center();
+
+          start = new Button({
+            label: label,
+            width: 400,
+            height: 50,
+            backgroundColor: darker,
+            rollBackgroundColor: "#81561C",
+            color: white,
+            corner: 25,
+            borderColor: white,
+            borderWidth: 2,
+            autoPadding: 10
+          });
+            start.on("click", () => {
+              zgo("lvl7.html")
+            });
+        
+    }
+
+    
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

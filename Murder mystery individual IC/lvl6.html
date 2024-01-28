@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>MURDER MYSTERY</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type=module>
+
+import zim from "https://zimjs.org/cdn/015/zim_game";
+
+const assets = [
+    "1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "d1.png",
+    "d2.png",
+    "d3.png",
+    "d4.png",
+    "d5.png", 
+    "h1.png", 
+    "h2.png", 
+    "p1.png", 
+    "p2.png", 
+    "p3.png", 
+    "p4.png", 
+    "p5.png",
+    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap',
+    "https://fonts.googleapis.com/css2?family=Tomorrow&display=swap"
+
+];
+const path = "assets/";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, darker, darker, ready, assets, path);
+function ready() {
+
+
+  
+  let container = new Container(W, H).sca(0.7, 0.8).centerReg();
+  let intro = new Pic("7.png").centerReg(container).sca(1.2, 1)
+  let introframe = new Rectangle(925, 770, null, lighter, 1, 20).centerReg(container)
+  container.setMask(introframe)
+  
+
+  const labels = new Label({
+    text: "Previous Room",
+    size: 20,
+    color: "#81561C",
+    font: "tomorrow",
+    }).centerReg().center();
+    
+    const button1 = new Button({
+    label: labels,
+    style: "tomorrow",
+    color: "#81561C",
+    height: 40,
+    width: 150,
+    backgroundColor: brown,
+    rollBackgroundColor: "#81561C",
+    corner: 10,
+    borderColor: white,
+    borderWidth: 2,
+    }).pos(5, 90, RIGHT, BOTTOM);
+
+    button1.on("click", () => {
+        zgo("lvl8.html")
+    });
+
+
+
+  let detective = new Pic("d1.png").loc(0, 330).sca(0.2)
+
+  const introtext = new Label({
+        text: "Who is the Murderer?",
+        size: 50,
+        color: lighter,
+        font: "tomorrow",
+        }).pos(0, 200, CENTER, TOP, container)
+
+    const introtext2 = new Label({
+        text: "Note the first letter has to be in capital letter",
+        size: 20,
+        color: lighter,
+        font: "tomorrow",
+        }).pos(0, 300, CENTER, TOP, container)
+
+
+
+
+  let murderer = "Daniel";
+  let submitButton
+  let restartButton
+
+  
+   let input = new TextInput({
+            placeholder: "murderer",
+            font: "tomorrow",
+            corner: 10,
+            width: 400,
+            height: 50
+        }).center(container);
+
+       let submitlabel = new Label({
+            text: "submit",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).pos(0, 0, CENTER, MIDDLE, submitButton)
+
+        submitButton = new Button({label: submitlabel, width: 120, height: 40, backgroundColor: dark, color: lighter, autoPadding: 10}).pos(0, 300, CENTER, BOTTOM, container).tap(() => {
+        checkMurderer(input.text); 
+        });
+
+        function checkMurderer(enteredMurderer) {
+            if (enteredMurderer === murderer) {
+                input.removeFrom(container)
+                submitButton.removeFrom(container)
+                introtext.removeFrom(container)
+                introtext2.removeFrom(container)
+                button1.removeFrom()
+                const c1 = new Label({
+                text: "Congratulations",
+                size: 50,
+                color: lighter,
+                font: "tomorrow",
+                }).pos(0, 250, CENTER, TOP, container)
+                const c2 = new Label({
+                text: "You Found the Murderer!!",
+                size: 50,
+                color: lighter,
+                font: "tomorrow",
+                }).pos(0, 350, CENTER, TOP, container);
+
+            let restartlabel = new Label({
+            text: "End Game",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).pos(0, 0, CENTER, MIDDLE, restartButton)
+
+        restartButton = new Button({label: restartlabel, width: 120, height: 40, backgroundColor: dark, color: lighter, autoPadding: 10}).pos(0, 200, CENTER, BOTTOM, container)
+        restartButton.on("click", ()=>{
+        zgo("lv1.html");
+        });
+
+            } else {
+                input.removeFrom(container)
+                submitButton.removeFrom(container)
+                introtext.removeFrom(container)
+                introtext2.removeFrom(container)
+                button1.removeFrom()
+                const c3 = new Label({
+                text: "Ooouuu",
+                size: 50,
+                color: lighter,
+                font: "tomorrow",
+                }).pos(0, 250, CENTER, TOP, container)
+                const c4 = new Label({
+                text: "Unfortunately that isnt the Murderer",
+                size: 50,
+                color: lighter,
+                font: "tomorrow",
+                }).pos(0, 350, CENTER, TOP, container);
+
+                let restartlabel = new Label({
+            text: "Restart",
+            size: 20,
+            color: lighter,
+            font: "tomorrow",
+          }).pos(0, 0, CENTER, MIDDLE, restartButton)
+
+        restartButton = new Button({label: restartlabel, width: 120, height: 40, backgroundColor: dark, color: lighter, autoPadding: 10}).pos(0, 200, CENTER, BOTTOM, container)
+        restartButton.on("click", ()=>{
+        zgo("lv1.html");
+        });
+            }
+
+        }
+
+
+
+    
+
+
+
+
+    
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>
